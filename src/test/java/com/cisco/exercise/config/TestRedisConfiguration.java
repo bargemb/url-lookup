@@ -1,6 +1,7 @@
 package com.cisco.exercise.config;
 
 
+import com.cisco.exercise.properties.RedisProperties;
 import org.springframework.boot.test.context.TestConfiguration;
 import redis.embedded.RedisServer;
 
@@ -11,8 +12,8 @@ import javax.annotation.PreDestroy;
 public class TestRedisConfiguration {
     private RedisServer redisServer;
 
-    public TestRedisConfiguration() {
-        this.redisServer = new RedisServer();
+    public TestRedisConfiguration(RedisProperties redisProperties) {
+        this.redisServer = new RedisServer(redisProperties.getRedisPort());
     }
 
     @PostConstruct
